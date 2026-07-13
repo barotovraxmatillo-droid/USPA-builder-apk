@@ -24,14 +24,10 @@ jobs:
           export PATH=$PATH:~/.local/bin
           buildozer init
           
-          # Litsenziyalarni avtomatik qabul qilish sozlamasi
+          # Litsenziyani avtomatik qabul qilishni yoqish
           sed -i 's/# android.accept_sdk_license = False/android.accept_sdk_license = True/' buildozer.spec
           
-          # Android litsenziyalarini majburiy qabul qildirish
-          mkdir -p ~/.android
-          touch ~/.android/repositories.cfg
-          yes | sdkmanager --licenses || true
-          
+          # APK yig'ish (litsenziyani o'zi avtomat tasdiqlaydi)
           buildozer android debug
 
       - name: Upload APK
